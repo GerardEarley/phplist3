@@ -375,7 +375,7 @@ if (!empty($GLOBALS['require_login'])) {
         //$msg = 'Not logged in';
         $logged = false;
         foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
-            if ($pluginname == 'simplesaml' && !isset($_GET['sso'])) {
+            if ($pluginname == 'simplesaml' && !isset($_GET[$GLOBALS['plugins'][$pluginname]->autUrl])) {
                 continue;
             }
             if ($plugin->login()) {
