@@ -81,7 +81,7 @@ jobs:
           mkdir -p build/mails
           chmod -R 777 output/screenshots build/mails
           ./bin/start-selenium > output/selenium.log 2>&1 &
-          sleep 5
+          sleep 15
           sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
         continue-on-error: ${{ matrix.experimental }}
 
