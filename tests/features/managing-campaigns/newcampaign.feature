@@ -38,7 +38,7 @@ Feature: Create new campaign
         And I follow "Start a new campaign"
         When I follow "Lists"
         # Try with and without the colon
-        Then I should see "Please select the lists you want to send your campaign to:"
+        Then I must see "Please select the lists you want to send your campaign to:"
         And the "targetlist[all]" checkbox should not be checked
         And the "targetlist[allactive]" checkbox should not be checked
 
