@@ -46,6 +46,16 @@ function footer()
     echo '</div></form>';
 }
 
+function enableDefaultLogin()
+{
+    echo '<div class="login"><p>';
+    echo '<strong>' . $GLOBALS['I18N']->get('Having trouble with SSO login?') . '</strong><br>';
+    echo $GLOBALS['I18N']->get('You can still use default login by clicking on the button') . ' ';
+    echo '<a href="?page=enablelogin" class="submit">' . $GLOBALS['I18N']->get('Enable default login') . '</a>';
+    echo '</p><div class="clear"></div></div>';
+}
+
+
 function renderSSO()
 {
     if (!empty($GLOBALS['ssoplugin'])) {
@@ -156,5 +166,9 @@ if (isset($_POST['password1']) && isset($_POST['password2'])) {
         footer();
     }
     renderSSO();
+
+    if (!$showDefaultLogin) {
+        enableDefaultLogin();
+    }
 }
 ?>

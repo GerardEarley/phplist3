@@ -291,6 +291,11 @@ if (isset($GLOBALS['installation_name'])) {
 }
 echo "$page_title</title>";
 $inRemoteCall = false;
+if ($page_title === 'enablelogin') {
+    SaveConfig('hide_default_login', 0);
+    header('Location: ?page=home');
+    exit;
+}
 $doLoginCheck = Sql_Table_exists($tables['admin_login']);
 
 if (!empty($GLOBALS['require_login'])) {
