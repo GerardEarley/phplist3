@@ -220,7 +220,7 @@ jobs:
 
       - name: Upload the package as artifact
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           path: "phplist-*.tgz"
           name: "phpList Release File"
