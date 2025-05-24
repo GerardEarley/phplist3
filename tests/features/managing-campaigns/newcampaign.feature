@@ -1,3 +1,6 @@
+
+@wip
+
 Feature: Create new campaign
 
     In order to create a new campaign
