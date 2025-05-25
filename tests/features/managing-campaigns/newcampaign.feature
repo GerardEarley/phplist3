@@ -1,5 +1,4 @@
 
-@wip
 
 Feature: Create new campaign
 
