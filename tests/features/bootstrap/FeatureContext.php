@@ -223,6 +223,14 @@ class FeatureContext extends MinkContext
     {
         $this->fillField($arg1, $this->params['admin_password']);
     }
+    
+    /**
+     * @Given I refresh the page
+     */
+    public function iRefreshThePage()
+    {
+        $this->getSession()->getDriver()->reload();
+    }
 
     /**
      * @When /^I fill in "([^"]*)" with an email address$/
