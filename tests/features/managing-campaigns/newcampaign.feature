@@ -24,8 +24,6 @@ Feature: Create new campaign
         And I refresh the page
         Then I should see "Embargoed Until"
         When I follow "Lists"
-        When I follow "Content"
-        When I follow "Lists"
         And I refresh the page
         Then I should see "Please select the lists you want to send your campaign to"
         And I should see "All Lists"

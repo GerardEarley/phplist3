@@ -272,7 +272,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           cd ..
 
-          sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
+          [[ $SSHPASS != "" ]] && sshpass -e sftp -oBatchMode=no -b - ${{ secrets.SF_USERNAME }}@${{ secrets.SF_HOST }} << EOF
             cd /home/frs/project/phplist/$RELEASE_FOLDER
             mkdir $RELEASE_VERSION
             cd $RELEASE_VERSION
