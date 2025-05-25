@@ -21,6 +21,7 @@ Feature: Create new campaign
         And I press "Save and continue editing"
         Then I should see "This is the Content of the Campaign"
         When I follow "Scheduling"
+        And I refresh the page
         Then I should see "Embargoed Until"
         When I follow "Lists"
         When I follow "Content"
