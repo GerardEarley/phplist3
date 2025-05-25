@@ -58,6 +58,7 @@ default:
       screenshot:
         directory: /tmp/screenshots/
         mode: default
+        autoClean: false
 
 chrome:
   extensions:
