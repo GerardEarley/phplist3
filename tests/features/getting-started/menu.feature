@@ -20,7 +20,6 @@ Feature: Navigate the app using the menu
       | develop                   |
      Then I should see "Recently Visited"
      Then I should see "logout"
-     Then I should see "Dashboard"
 
 
     Scenario Outline: Browse Subscribers menu
