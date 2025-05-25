@@ -23,6 +23,8 @@ Feature: Create new campaign
         When I follow "Scheduling"
         Then I should see "Embargoed Until"
         When I follow "Lists"
+        When I follow "Content"
+        When I follow "Lists"
         Then I should see "Please select the lists you want to send your campaign to"
         And I should see "All Lists"
         When I check "targetlist[all]"
