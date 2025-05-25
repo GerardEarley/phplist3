@@ -80,7 +80,6 @@ Feature: Navigate the app using the menu
         Given I have logged in as an administrator
         Given I follow "Dashboard"
         Given I follow "Config"
-        Then take a screenshot
         Then I should see "<Innerpages>"
         Examples:
          | Innerpages                         |
