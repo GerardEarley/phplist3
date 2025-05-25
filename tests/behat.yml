@@ -57,6 +57,7 @@ default:
     FailAid\Extension:
       screenshot:
         directory: output/screenshots/
+        screenshot_directory: output/screenshots
         mode: default
         autoClean: false
         size: 1444x1280
