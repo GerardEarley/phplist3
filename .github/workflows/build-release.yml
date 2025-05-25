@@ -87,6 +87,7 @@ jobs:
           cp -fv tests/ci/behat.yml tests/behat.yml
           cp -fv tests/ci/config.php public_html/lists/config/config.php
           mkdir -p output/screenshots
+          chmod 777 output/screenshots
           mkdir -p build/mails
           ./bin/start-selenium > output/selenium.log 2>&1 &
           sleep 5
@@ -112,6 +113,8 @@ jobs:
           which sftp 
           which sshpass
           vendor/bin/behat -V
+          ls -l output
+          ls -l output/screenshots
 
       - name: Run Behat Tests
         run: |
