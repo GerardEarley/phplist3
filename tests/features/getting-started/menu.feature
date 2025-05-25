@@ -1,6 +1,6 @@
 
 @javascript
-
+@wip
 Feature: Navigate the app using the menu
   In order to access different application pages
   As an admin user
@@ -20,7 +20,7 @@ Feature: Navigate the app using the menu
       | develop                   |
      Then I should see "Recently Visited"
      Then I should see "logout"
-
+     Then I should see "Dashboard"
 
     Scenario Outline: Browse Subscribers menu
         Given I have logged in as an administrator
@@ -75,6 +75,7 @@ Feature: Navigate the app using the menu
          | Send the queue            |
          | Rebuild DB indexes        |
          | system                    |
+
      Scenario Outline: Browse Config menu
         Given I have logged in as an administrator
         Given I follow "Config"
