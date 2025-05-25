@@ -20,6 +20,7 @@ default:
         - MailContext:
             mail_dir: build/mails
         - SubscriberContext
+        - ScreenshotContext
         - UserContext
         - FailAid\Context\FailureContext
   extensions:
