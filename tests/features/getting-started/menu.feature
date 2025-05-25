@@ -7,6 +7,7 @@ Feature: Navigate the app using the menu
 
   Scenario Outline: Use main menu navigation links
     Given I have logged in as an administrator
+    Given I follow "Dashboard"
     Then I should see "<Pagename>"
     Examples:
       | Pagename                  |
