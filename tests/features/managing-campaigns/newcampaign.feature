@@ -29,6 +29,7 @@ Feature: Create new campaign
         And I should see "All Lists"
         When I check "targetlist[all]"
         And I press "Save and continue editing"
+        And I refresh the page
         Then I should see "selected"
         When I follow "Finish"
         And I press "send"
