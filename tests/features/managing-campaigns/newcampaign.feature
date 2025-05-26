@@ -19,13 +19,16 @@ Feature: Create new campaign
         And I press "Save and continue editing"
         Then I must see "This is the Content of the Campaign"
         When I follow "Scheduling"
-        Then I must see "Embargoed Until"
+        And I refresh the page
+        Then I should see "Embargoed Until"
         When I follow "Lists"
-        Then I must see "Please select the lists you want to send your campaign to"
-        And I must see "All Lists"
+        And I refresh the page
+        Then I should see "Please select the lists you want to send your campaign to"
+        And I should see "All Lists"
         When I check "targetlist[all]"
         And I press "Save and continue editing"
-        Then I must see "selected"
+        And I refresh the page
+        Then I should see "selected"
         When I follow "Finish"
         And I press "send"
         Then I must see "Campaign queued"

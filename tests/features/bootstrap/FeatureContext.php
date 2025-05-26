@@ -161,6 +161,12 @@ class FeatureContext extends MinkContext
         $this->fillField('login', $this->params['admin_username']);
         $this->fillField('password', $this->params['admin_password']);
         $this->pressButton('Continue');
+    	$this->getSession()->getDriver()->setTimeouts([
+            'script' => 3000000,
+            'implicit' => 3000000,
+            'page load' => 3000000 //https://web.archive.org/web/20160730151941/http://alex-panshin.me/blog/how-to-set-pageload-timeout-for-selenium-with-behat/
+
+        ]); 
     }
 
     /**
@@ -207,6 +213,14 @@ class FeatureContext extends MinkContext
     public function iFillInWithAValidPassword($arg1)
     {
         $this->fillField($arg1, $this->params['admin_password']);
+    }
+    
+    /**
+     * @Given I refresh the page
+     */
+    public function iRefreshThePage()
+    {
+        $this->getSession()->getDriver()->reload();
     }
 
     /**

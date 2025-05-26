@@ -567,6 +567,12 @@ if (!$ajax && $page != 'login') {
             Info( s('Running DEV version, but developer email is not set') );
         }
     }
+    if (defined('RELEASEDATE') && ((time() - RELEASEDATE) / 31536000) > 2) {
+        Info(s('Your phpList version is older than two years. Please %supgrade phpList</a> before continuing.</br>
+            Visit <a href="https://www.phplist.org/users/" title="'.s('Get some help').'">the support site</a> if you need some help.'
+            ,'<a href="https://www.phplist.com/download?utm_source=pl'.VERSION.'&amp;utm_medium=outdated-download-forced&amp;utm_campaign=phpList" title="'.s('Download the latest version').'" target="_blank">'));
+    }
+
     if (TEST) {
         echo Info($GLOBALS['I18N']->get('Running in testmode, no emails will be sent. Check your config file.'));
     }
@@ -593,12 +599,6 @@ if (!$ajax && $page != 'login') {
 
     if (version_compare(PHP_VERSION, '5.3.3', '<') && WARN_ABOUT_PHP_SETTINGS) {
         Error(s('Your PHP version is out of date. phpList requires PHP version 5.3.3 or higher.'));
-    }
-    if (defined('RELEASEDATE') && ((time() - RELEASEDATE) / 31536000) > 2) {
-        Fatal_Error(s('Your phpList version is older than two years. Please %supgrade phpList</a> before continuing.</br>
-            Visit <a href="https://www.phplist.org/users/" title="'.s('Get some help').'">the support site</a> if you need some help.'
-            ,'<a href="https://www.phplist.com/download?utm_source=pl'.VERSION.'&amp;utm_medium=outdated-download-forced&amp;utm_campaign=phpList" title="'.s('Download the latest version').'" target="_blank">'));
-        return;
     }
 
     if (defined('ENABLE_RSS') && ENABLE_RSS && !function_exists('xml_parse') && WARN_ABOUT_PHP_SETTINGS) {
