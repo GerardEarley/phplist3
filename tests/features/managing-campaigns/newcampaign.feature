@@ -19,12 +19,15 @@ Feature: Create new campaign
         And I press "Save and continue editing"
         Then I should see "This is the Content of the Campaign"
         When I follow "Scheduling"
+        And I refresh the page
         Then I should see "Embargoed Until"
         When I follow "Lists"
+        And I refresh the page
         Then I should see "Please select the lists you want to send your campaign to"
         And I should see "All Lists"
         When I check "targetlist[all]"
         And I press "Save and continue editing"
+        And I refresh the page
         Then I should see "selected"
         When I follow "Finish"
         And I press "send"
