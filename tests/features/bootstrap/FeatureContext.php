@@ -1,17 +1,8 @@
 <?php
 
-use Behat\Behat\Context\Context;
 
 use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
-#use Behat\MinkExtension\Context\RawMinkContext;
-
-//
-// Require 3rd-party libraries here:
-//
-//   require_once 'PHPUnit/Autoload.php';
-//   require_once 'PHPUnit/Framework/Assert/Functions.php';
-//
 
 /**
  * Features context.
@@ -107,7 +98,7 @@ class FeatureContext extends MinkContext
                 $closure();
 
                 return;
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 if ($i == $tries) {
                     throw $e;
                 }
@@ -185,7 +176,7 @@ class FeatureContext extends MinkContext
     {
         $retVal = $this->token != null;
         if(!$retVal && $throwsException){
-            throw new \Exception('Not logged in yet');
+            throw new Exception('Not logged in yet');
         }
         return $retVal;
     }
@@ -339,4 +330,28 @@ class FeatureContext extends MinkContext
         $this->getSession()->getDriver()->getWebDriverSession()->accept_alert();
     }
 
+    /**
+     * @Then I must see :text
+     */
+    public function iMustSee($text)
+    {
+        $maxAttempts = 3;
+        $waitTimeMs = 1000;
+        $this->getSession()->wait(5000, "document.readyState === 'complete'");
+
+        for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
+            try {
+                $this->assertSession()->pageTextContains($this->fixStepArgument($text));
+                return;
+            } catch (\WebDriver\Exception\StaleElementReference $e) {
+                // Handle Selenium stale element exception, retry
+            } catch (\Behat\Mink\Exception\ResponseTextException $e) {
+                // Handle Mink text assertion failure, retry
+            }
+
+            usleep($waitTimeMs * 1000);
+        }
+
+        throw new Exception(sprintf("Text '%s' not found after %d attempts.", $text, $maxAttempts));
+    }
 }

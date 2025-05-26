@@ -9,7 +9,7 @@ Feature: Create new campaign
         Given I follow "Campaigns"
         Given I follow "Send a campaign"
         Given I follow "Start a new campaign"
-        Then I should see "Campaign subject"
+        Then I must see "Campaign subject"
         When I fill in "subject" with "This is a test subject"
         And I fill in "fromfield" with "From me me@mydomain.com"
         And I fill in "sendmethod" with "inputhere"
@@ -17,7 +17,7 @@ Feature: Create new campaign
         And I fill in "footer" with "This is the Footer of the campaign"
         And I fill in "campaigntitle" with "This is the Title of the Campaign"
         And I press "Save and continue editing"
-        Then I should see "This is the Content of the Campaign"
+        Then I must see "This is the Content of the Campaign"
         When I follow "Scheduling"
         And I refresh the page
         Then I should see "Embargoed Until"
@@ -31,7 +31,7 @@ Feature: Create new campaign
         Then I should see "selected"
         When I follow "Finish"
         And I press "send"
-        Then I should see "Campaign queued"
+        Then I must see "Campaign queued"
 
     # Switch to using a scenario outline that tests subaccounts also
     Scenario: Select a list to send the campaign to
@@ -41,7 +41,7 @@ Feature: Create new campaign
         And I follow "Start a new campaign"
         When I follow "Lists"
         # Try with and without the colon
-        Then I should see "Please select the lists you want to send your campaign to:"
+        Then I must see "Please select the lists you want to send your campaign to:"
         And the "targetlist[all]" checkbox should not be checked
         And the "targetlist[allactive]" checkbox should not be checked
 

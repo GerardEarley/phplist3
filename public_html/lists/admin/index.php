@@ -100,6 +100,7 @@ include_once dirname(__FILE__).'/defaultFrontendTexts.php';
 if (file_exists(dirname(__FILE__).'/../texts/'.$GLOBALS['language_module'])) {
     include_once dirname(__FILE__).'/../texts/'.$GLOBALS['language_module'];
 }
+@session_start();
 include_once dirname(__FILE__).'/languages.php';
 require_once dirname(__FILE__).'/defaultconfig.php';
 
@@ -290,6 +291,11 @@ if (isset($GLOBALS['installation_name'])) {
 }
 echo "$page_title</title>";
 $inRemoteCall = false;
+if ($page_title === 'enablelogin') {
+    SaveConfig('hide_default_login', 0);
+    header('Location: ?page=home');
+    exit;
+}
 $doLoginCheck = Sql_Table_exists($tables['admin_login']);
 
 if (!empty($GLOBALS['require_login'])) {
@@ -374,6 +380,9 @@ if (!empty($GLOBALS['require_login'])) {
         //$msg = 'Not logged in';
         $logged = false;
         foreach ($GLOBALS['plugins'] as $pluginname => $plugin) {
+            if ($pluginname == 'simplesaml' && !isset($_GET[$GLOBALS['plugins'][$pluginname]->autUrl])) {
+                continue;
+            }
             if ($plugin->login()) {
                 $logged = true;
                 break;
