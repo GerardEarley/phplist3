@@ -341,7 +341,7 @@ if (!empty($GLOBALS['require_login'])) {
 
             if ($doLoginCheck) {
               # check if this is a new IP address
-              $knownIP = Sql_Fetch_Row_Query(sprintf('select * from %s where remote_ip4 = "%s" or remote_ip6 = "%s" and adminid = %d ',$GLOBALS['tables']['admin_login'],$remoteAddr,$remoteAddr,$loginresult[0]));
+              $knownIP = Sql_Fetch_Row_Query(sprintf('select * from %s where (remote_ip4 = "%s" or remote_ip6 = "%s") and adminid = %d ',$GLOBALS['tables']['admin_login'],$remoteAddr,$remoteAddr,$loginresult[0]));
               if (empty($knownIP[0])) {
                 notifyNewIPLogin($loginresult[0]);
               }
