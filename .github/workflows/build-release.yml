@@ -38,7 +38,7 @@ jobs:
       - name: Setup Packages
         run: |
           cd $GITHUB_WORKSPACE
-          sudo apt update && sudo apt install -y rsync
+          sudo apt update && sudo apt install -y rsync postfix
 
       - name: Cache Composer dependencies
         uses: actions/cache@v4
@@ -89,6 +89,7 @@ jobs:
           mkdir /tmp/screenshots
           chmod 777 /tmp/screenshots
           mkdir -p build/mails
+          smtp-sink -c -d "output/mails/%Y%m%d%H/%M."  2500 1024 &
           ./bin/start-selenium > output/selenium.log 2>&1 &
           sleep 5
           sudo php -S 0.0.0.0:80 -t public_html > /dev/null 2>&1 &
@@ -119,8 +120,8 @@ jobs:
       - name: Run Behat Tests ## problem encountered https://github.com/forceedge01/behat-fail-aid/issues/76
         run: |
           cd $GITHUB_WORKSPACE/tests
-          ../vendor/bin/behat -n -p chrome --strict --stop-on-failure --tags=@initialise
-          ../vendor/bin/behat -n -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip"
+          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags=@initialise
+          ../vendor/bin/behat -n -fprogress -p chrome --strict --stop-on-failure --tags="~@initialise && ~@wip && ~@behattest"
 
       - name: Upload the output
         if: always()

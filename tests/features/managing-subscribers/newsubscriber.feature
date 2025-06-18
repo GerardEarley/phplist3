@@ -14,4 +14,4 @@ Feature: Create a new subscriber
     Then I must see "subscriber profile"
     Then I must see "Add to blacklist"
     And I follow "Search subscribers"
-    Then I must see the email address I entered
+    Then I should see the email address I entered
