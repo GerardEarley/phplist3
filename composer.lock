@@ -1539,12 +1539,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/TatevikGr/phplist-plugin-ckeditor5.git",
-                "reference": "0b67edb97930b2b56148410fd724e1ce047d5154"
+                "reference": "aae8360a8fa63b4170b8ddb8f6f7c7fd08a6e8c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TatevikGr/phplist-plugin-ckeditor5/zipball/0b67edb97930b2b56148410fd724e1ce047d5154",
-                "reference": "0b67edb97930b2b56148410fd724e1ce047d5154",
+                "url": "https://api.github.com/repos/TatevikGr/phplist-plugin-ckeditor5/zipball/aae8360a8fa63b4170b8ddb8f6f7c7fd08a6e8c3",
+                "reference": "aae8360a8fa63b4170b8ddb8f6f7c7fd08a6e8c3",
                 "shasum": ""
             },
             "default-branch": true,
@@ -1565,7 +1565,7 @@
                 "source": "https://github.com/TatevikGr/phplist-plugin-ckeditor5/tree/master",
                 "issues": "https://github.com/TatevikGr/phplist-plugin-ckeditor5/issues"
             },
-            "time": "2025-02-23T15:38:35+00:00"
+            "time": "2025-03-02T15:13:57+00:00"
         }
     ],
     "packages-dev": [
