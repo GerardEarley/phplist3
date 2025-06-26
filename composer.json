@@ -97,6 +97,10 @@
       {
         "type": "vcs",
         "url": "https://github.com/tatevikgr/phplist-plugin-ckeditor5.git"
+      },
+      {
+        "type": "vcs",
+        "url": "https://github.com/phpList/phplist-plugin-saml2.git"
       }
     ],
   "extra": {
@@ -118,7 +122,7 @@
     ]
   },
   "require": {
-    "php": ">=7.3",
+    "php": ">=8.2",
     "davidbarratt/custom-installer": "@stable",
     "phplist/phplist-ui-bootlist": "@stable",
     "phplist/phplist-lan-help": "@stable",
@@ -126,6 +130,7 @@
     "phplist/phplist-lan-texts": "@stable",
     "phplist/updater": "@stable",
     "phplist/phplist-plugin-invite": "dev-master",
+    "phplist/phplist-plugin-saml2": "dev-main",
     "michield/phplist-plugin-campaignslicer": "dev-master",
     "michield/phplist-plugin-dateplaceholder": "dev-master",
     "michield/phplist-plugin-disposablemailblock": "dev-master",
