@@ -55,47 +55,30 @@ services:
         soft: 32768
         hard: 32768
         
-
-  # firefox:
-  #   image: elgalu/selenium
-  #  # volumes:
-  #  #   - /dev/shm:/dev/shm
-  #   ports:
-  #    # VNC: See what's going on by connecting your VNC client to 0.0.0.0:5900
-  #     - 5900:25900
-  #     # noVNC: See what's going on by hitting http://0.0.0.0:6080 in your browser
-  #     #        Important: http://127.0.0.1:6080 works but http://localhost:6080 doesn't
-  #     - 6080:26080
-  #   shm_size: 12g
-  #   privileged: true
-  #   environment:
-  #     - NOVNC=true
-  #     - DEBUG=false
-  #     - SELENIUM_HUB_HOST=hub
-  #     - SELENIUM_HUB_PORT=4444
-  #     - SELENIUM_NODE_HOST={{CONTAINER_IP}}
-  #     - SCREEN_WIDTH=1300
-  #     - SCREEN_HEIGHT=999
-  #     - VIDEO=${VIDEO-false}
-  #     - GRID=false
-  #     - CHROME=false
-  #     - FIREFOX=true
-
   phplist:
-    image: phplist/phplist:latest
+    image: phplist/phplist:${PHPLIST_VERSION:3.6.16}
     container_name: phplist
     depends_on:
       - firefox
       - dbhost
       - mailpit
     volumes:
-      - ${PHPLIST_CODE}:/var/www/phplist3      
+#      - ${PHPLIST_CODE}:/var/www/phplist3      
+      - images:/var/www/phpList3/public_html/images      
     restart: always
     environment:
       DB_HOST: dbhost
       DB_USER: phplist
       DB_PASSWORD: phplist
       DB_NAME: phplistdb
+      
+      PHPLIST_DATABASE_HOST: dbhost
+      PHPLIST_DATABASE_PORT: 3306
+      PHPLIST_DATABASE_DRIVER: pdo_mysql
+      PHPLIST_DATABASE_NAME: phplistdb
+      PHPLIST_DATABASE_USER: phplist
+      PHPLIST_DATABASE_PASSWORD: phplist
+      PHPLIST_SECRET: ohFai9ohk4Shah9Ahzinephiijaelai5kuP4thal0raezaeZeiditaiphieghaeg
       MAILHOST: mailpit:1025
       PHP_VERSION: 8.2
     networks:
@@ -123,14 +106,5 @@ services:
     networks:
       - phplistbehatnet
 
-  ## a small python app to test Selenium and debug Behat behaviour
-#   pythontest:
-#     container_name: pythontest
-#     build: 
-#       context: app
-#       dockerfile: Dockerfile
-#     depends_on:
-# #      - chrome
-#       - firefox
-#     networks:
-#       - phplistbehatnet
+volumes:
+  images:
