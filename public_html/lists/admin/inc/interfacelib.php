@@ -241,11 +241,11 @@ class WebblerListing
 
         $heading = isset($this->elementHeading) ? $this->elementHeading : $this->title;
         $html = '<tr valign="top">';
-        $html .= sprintf('<th><a name="%s"></a><div class="listinghdname">%s%s</div></th>',
+        $html .= sprintf('<th colspan="2"><a name="%s"></a><div class="listinghdname">%s%s</div></th>',
             str_replace(' ', '_', htmlspecialchars(mb_strtolower($heading))), $tophelp, $heading);
         $c = 1;
         foreach ($this->columns as $column => $columnname) {
-            if ($c == count($this->columns)) {
+            if ($c == count($this->columns) && $c > 1) {
                 $html .= sprintf('<th><div class="listinghdelement">%s%s</div></th>', $columnname, $this->help);
             } else {
                 if ($this->sortby[$columnname] && $this->sort) {
@@ -255,7 +255,7 @@ class WebblerListing
                 } else {
                     $display = $columnname;
                 }
-                $html .= sprintf('<th><div class="listinghdelement">%s</div></th>', $display);
+                if($c > 1){$html .= sprintf('<th><div class="listinghdelement">%s</div></th>', $display);}
             }
             ++$c;
         }
